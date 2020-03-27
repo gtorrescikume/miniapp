@@ -18,7 +18,7 @@ class CaseList extends React.Component {
             <View styles={styles.container}>
 
             <FlatList
-            data={this.props.employee}
+            data={this.props.employee.item}
             renderItem={this.renderItem}
             keyExtractor = {(item) => item.key}
             

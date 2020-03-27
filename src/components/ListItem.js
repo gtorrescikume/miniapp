@@ -3,7 +3,7 @@ import { Text, StyleSheet } from 'react-native';
  
 class ListItem extends React.Component {
   render() {
-   const { name } = this.props.employee;
+   const { name } = this.props.employee.item;
  
     return (
       <View>
