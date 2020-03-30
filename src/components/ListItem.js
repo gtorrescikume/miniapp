@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, View } from 'react-native';
  
 class ListItem extends React.Component {
   render() {
-   const { name } = this.props.employee.item;
+   const { name } = this.props.people;
  
     return (
       <View>

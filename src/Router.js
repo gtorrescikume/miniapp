@@ -34,10 +34,6 @@ const RouterComponent = () => {
     )
 }
 
-/*const styles= StyleSheet.create({
-    bottomTabs: {
-        flex: 1
-    }
-}); */
+
 
 export default RouterComponent;

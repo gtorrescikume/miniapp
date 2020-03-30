@@ -9,7 +9,7 @@ class CaseList extends React.Component {
         this.props.casesFetch();
     }
 
-    renderItem = ({ item }) => <ListItem employee={item} />; 
+    renderItem = ({ item }) => <ListItem people={item} />; 
       
 
     render(){
@@ -18,9 +18,9 @@ class CaseList extends React.Component {
             <View styles={styles.container}>
 
             <FlatList
-            data={this.props.employee.item}
+            data={this.props.person}
             renderItem={this.renderItem}
-            keyExtractor = {(item) => item.key}
+            keyExtractor = {(item) => item.uid}
             
             ></FlatList>
         </View>
@@ -37,7 +37,16 @@ const mapStateToProps = state => {
     return {person};
 }
 
-
+/*const employees = Object.keys(state.employees)
+.map(employeeId => {
+    return Object.assign({}, state.employees[employeeId], { uid: employeeId });
+    */
+/*  const employees = Object.keys(state.employees).map(employeeKey => ({
+    ...state.employees[employeeKey],
+    uid: employeeKey,
+  }));
+  */
+ 
 const styles = StyleSheet.create({
 
     container: {
