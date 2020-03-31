@@ -1,4 +1,4 @@
-import {EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, LOGIN_USER} from './types'
+import {EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, LOGIN_USER, SIGNUP_USER} from './types'
 import {Actions} from 'react-native-router-flux';
 import * as firebase from 'firebase'
 
@@ -23,11 +23,21 @@ export const loginUser = ({email, password}) => {
     .catch((error) => {
         console.log (error)
 
+    })
+}};
+
+export const signupUser = ({email, password}) => {
+    return (dispatch) => {
+        dispatch ({type:SIGNUP_USER});
+
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .then(user=> loginUserSuccess(dispatch, user))
     .catch (() => loginUserFail (dispatch));
-    })
+        console.log();
+ 
 }};
+
+
 
 const loginUserFail=(dispatch) => {
     dispatch ({type:LOGIN_USER_FAIL})

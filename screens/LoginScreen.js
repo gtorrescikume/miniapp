@@ -1,8 +1,9 @@
 import React from 'react';
-import {View, Text, StyleSheet, TextInput, TouchableOpacity, } from 'react-native';
+import {View, Text, StyleSheet, TextInput, TouchableOpacity,} from 'react-native';
 import {Spinner} from '../src/Spinner'
 import {connect} from 'react-redux';
-import {emailChanged, passwordChanged, loginUser} from '../src/actions'
+import {Actions} from 'react-native-router-flux';
+import {emailChanged, passwordChanged, loginUser } from '../src/actions'
 
 
 class LoginScreen extends React.Component {
@@ -21,19 +22,6 @@ class LoginScreen extends React.Component {
     }
 
   
-    
- /*   state = {
-        email: '',
-        password:'',
-        errorMessage: null
-    };
-*/
- /*   handleLogin= () => {
-        const {email, password}= this.state
-
-        firebase.auth().signInWithEmailAndPassword(email, password).catch(error=>this.setState({errorMessage:error.message}));
-    } 
-    */
     render () {
         return (
             
@@ -73,6 +61,9 @@ class LoginScreen extends React.Component {
         
                      <Text style={styles.errorMessage}>{this.props.error}</Text>
 
+                     <TouchableOpacity style={styles.button} onPress={()=>{Actions.signup()}}>
+                         <Text style={{color:'white'}}>Sign Up</Text>
+                     </TouchableOpacity>
                 </View>
             </View>   
 
@@ -123,7 +114,7 @@ const styles= StyleSheet.create({
         color: '#161F3D'
     },
     button: {
-        marginTop: 60,
+        marginTop: 50,
         marginHorizontal: 30,
         backgroundColor: '#344378',
         borderRadius: 4,

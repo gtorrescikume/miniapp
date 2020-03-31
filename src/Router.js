@@ -4,6 +4,7 @@ import {Scene, Router, Stack, Actions} from 'react-native-router-flux';
 import LoginScreen from '../screens/LoginScreen'
 import List from './components/List';
 import AddPerson from './components/AddPerson';
+import RegisterScreen from '../screens/RegisterScreen';
 
 const RouterComponent = () => {
     return (
@@ -12,6 +13,7 @@ const RouterComponent = () => {
             key='root' hideNavBar>
                 <Stack key='auth'>
                     <Scene   key='login' component={LoginScreen} title = "" initial/>
+                    <Scene key='signup' component={RegisterScreen} title="Create Account"/>
                 </Stack>
            
                <Stack  key="main" tabs tabBarPosition={'bottom'}

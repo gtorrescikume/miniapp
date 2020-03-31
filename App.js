@@ -39,24 +39,6 @@ firebase.initializeApp(firebaseConfig);
       );
   };
 };
-//const AppStack = createStackNavigator({
-//  Home: HomeScreen
-//})
 
-//const AuthStack = createStackNavigator({
-  //Login: LoginScreen,
-  //Register: RegisterScreen
-//});
 
-export default App; //createAppContainer(
-  //createSwitchNavigator(
- //   {
- //     Loading: LoadingScreen,
- //     App: AppStack,
- //     Auth: AuthStack
- //   },
- //   {
- //     initialRouteName: "Loading"
- //   }
-////  )
-//)
+export default App; 

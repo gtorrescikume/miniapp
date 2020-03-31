@@ -1,13 +1,8 @@
-/*
 import React from 'react';
-import {View, Text, StyleSheet, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard} from 'react-native';
-import * as firebase from 'firebase'
+import {View, Text, StyleSheet, TextInput, TouchableOpacity, } from 'react-native';
+import {connect} from 'react-redux';
+import {emailChanged, passwordChanged, loginUser, signupUser} from '../src/actions'
 
-const DismissKeyboard= ({children}) => (
-    <TouchableWithoutFeedback onPress={()=> Keyboard.dismiss()}>
-        {children}
-    </TouchableWithoutFeedback>
-);
 
 class RegisterScreen extends React.Component {
     onEmailChange(text){
@@ -17,71 +12,51 @@ class RegisterScreen extends React.Component {
     onPasswordChange(text) {
         this.props.passwordChanged(text)
     }
-    };
-    /*
 
-    handleSignUp= () => {
+    onButtonPress() {
+        const {email, password} = this.props;
 
-        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(userCredentials=> {
-            return userCredentials.user.updateProfile({
-                displayName:this.state.name
-            });
-        })
-            .catch(error => this.setState({errorMessage:error.message}))
+        this.props.loginUser({email, password});
     }
 
-    */
-   /*
+    onSignUp() {
+        const {email, password} = this.props;
+
+        this.props.signupUser({email, password});
+    }
     render () {
         return (
-            <DismissKeyboard>
             <View style={styles.container}>
                 <Text style={styles.greeting}>{`Hello!\nSign Up here`}</Text>
 
                 <Text style={styles.errorMessage}>{this.props.error}</Text>
 
                 <View style={styles.form}>
-                    <View>
-                      <Text style= {styles.inputTitle}>Full Name</Text>
-                       <TextInput style={styles.input} autoCapitalize="none"
-                       placeholder='Jane Doe'
-                       onChangeText={this.onNameChange.bind(this)}
-                       value={this.props.name}></TextInput>
-                    </View>
 
                     <View style={{marginTop:32}}>
                       <Text style={styles.inputTitle}>Email</Text>
                        <TextInput style={styles.input} autoCapitalize="none"
-                       onChangeText={email => this.setState({email})}
-                       value={this.state.email}></TextInput>
+                        placeholder='email@email.com'
+                        onChangeText={this.onEmailChange.bind(this)}
+                        value={this.props.email}/>
                     </View>
 
                     <View style={{marginTop:32}}>
                       <Text style={styles.inputTitle}>Password</Text>
                        <TextInput style={styles.input} secureTextEntry autoCapitalize="none"
-                       onChangeText={password => this.setState({password})}
-                       value={this.state.password}></TextInput>
-                    </View><View style={{marginTop:32}}> 
-                        <Text style={styles.inputTitle}>Password</Text>
-                        <TextInput style={styles.input} secureTextEntry autoCapitalize="none"
+                        placeholder='password'
                         onChangeText={this.onPasswordChange.bind(this)}
-                        value={this.props.password}></TextInput>
-                            </View>
-                 </View>
+                        value={this.props.password}/>
+                    </View>
 
-                 <TouchableOpacity style={styles.button} onPress={this.handleSignUp}>
+                </View>
+
+                 <TouchableOpacity style={styles.button} onPress={this.onSignUp.bind(this)}>
                      <Text style={{color:'white'}}>Sign Up</Text>
                  </TouchableOpacity>
 
-                 <TouchableOpacity 
-                 style={{alignSelf:'center', marginTop:32}}
-                 onPress={()=> this.props.navigation.navigate('Login')}>
-                     <Text style={{color:'#414959', fontSize: 14}}>Already Registered?<Text style={{color: 'blue', fontSize:14}}> Log In!</Text>
-                     </Text>
-                 </TouchableOpacity>
-      
+                
         </View>
-        </DismissKeyboard>
         )
     }
 }
@@ -135,4 +110,9 @@ const styles= StyleSheet.create({
     }
 })
 
-export default RegisterScreen; */
+const mapStateToProps =({auth})=> {
+    const {email, password, error} = auth;
+    return {email, password, error};
+}
+
+export default connect(mapStateToProps, {emailChanged, passwordChanged, loginUser, signupUser}) (RegisterScreen);
